@@ -1,5 +1,14 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
+//  MongoDB URI from the environment variable 
+const dbURI =
+  process.env.MONGODB_URI ||
+  "mongodb+srv://jacqlynmcquade:<db_password>@bookworm.ohw3w.mongodb.net/?retryWrites=true&w=majority&appName=BookWorm";
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/googlebooks');
+// Connect to MongoDB
+mongoose.connect(dbURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
-module.exports = mongoose.connection;
+// Export the connection
+export default mongoose.connection;
