@@ -1,22 +1,22 @@
-const express = require("express");
-const { ApolloServer } = require("@apollo/server");
-const { expressMiddleware } = require("@apollo/server/express4"); // Ensure you use the correct import for express middleware
-const path = require("path");
-const { authMiddleware } = require("./utils/auth");
-
-const { typeDefs, resolvers } = require("./schemas");
-const db = require("./config/connection");
+// Use ES module imports instead of CommonJS
+import express from "express";
+import { ApolloServer } from "@apollo/server";
+import { expressMiddleware } from "@apollo/server/express4"; // Ensure you use the correct import for express middleware
+import path from "path";
+import { authMiddleware } from "./utils/auth.js"; // Add .js extension
+import { typeDefs, resolvers } from "./schemas/index.js"; // Add .js extension
+import db from "./config/connection.js"; // Add .js extension
+import mongoose from "mongoose";
 
 const PORT = process.env.PORT || 3001;
 const app = express();
 
-
-import mongoose from "mongoose";
-
+// Connection URI for MongoDB
 const dbURI =
   process.env.MONGODB_URI ||
   "mongodb+srv://jacqlynmcquade:<db_password>@bookworm.ohw3w.mongodb.net/?retryWrites=true&w=majority&appName=BookWorm";
 
+// Connect to MongoDB
 mongoose
   .connect(dbURI, {
     useNewUrlParser: true,
