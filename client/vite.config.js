@@ -1,5 +1,5 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -7,12 +7,14 @@ export default defineConfig({
   server: {
     port: 3000,
     open: true,
+    // Proxy API requests to the GraphQL server running on port 3001
     proxy: {
-      '/api': {
-        target: 'http://localhost:3001',
+      "/graphql": {
+        target: "http://localhost:3001",
+        changeOrigin: true,
         secure: false,
-        changeOrigin: true
-      }
-    }
-  }
-})
+      },
+    },
+  },
+  base: "./",
+});
