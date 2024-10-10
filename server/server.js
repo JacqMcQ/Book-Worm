@@ -10,6 +10,21 @@ const db = require("./config/connection");
 const PORT = process.env.PORT || 3001;
 const app = express();
 
+
+import mongoose from "mongoose";
+
+const dbURI =
+  process.env.MONGODB_URI ||
+  "mongodb+srv://jacqlynmcquade:<db_password>@bookworm.ohw3w.mongodb.net/?retryWrites=true&w=majority&appName=BookWorm";
+
+mongoose
+  .connect(dbURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("MongoDB connected successfully"))
+  .catch((err) => console.error("MongoDB connection error:", err));
+
 // Create a new instance of Apollo Server with the GraphQL schema
 const server = new ApolloServer({
   typeDefs,
