@@ -18,8 +18,9 @@
   },
   "dependencies": {
     "@apollo/server": "^4.11.0",
-    "graphql": "^16.6.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
+    "graphql": "^16.6.0",
     "mongoose": "^6.0.0"
   }
 }
